@@ -57,10 +57,11 @@ async function loadAllPredictions() {
 function renderNextGame() {
   const container = document.getElementById('next-game-container');
 
-  // primeiro jogo sem resultado ainda
-  const next = GAMES.find(g => !allResults[g.id]);
+  const sorted = [...GAMES].sort((a, b) => a.order - b.order);
+  // primeiro jogo sem resultado ainda (ordenado por data)
+  const next = sorted.find(g => !allResults[g.id]);
   // último jogo com resultado (o mais recente)
-  const last = [...GAMES].reverse().find(g => allResults[g.id]);
+  const last = [...sorted].reverse().find(g => allResults[g.id]);
 
   let html = '';
 
