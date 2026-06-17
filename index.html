@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bolão Copa 2026 🏆</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>🏆 Bolão italkeis</h1>
+    <p>Apenas jogos Brasil e Portugal</p>
+    <div class="header-disclaimer">Não estamos apostando. Bolão recreativo, não vale prêmio.</div>
+  </header>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('inicio')">⚽ Próximo Jogo</button>
+    <button class="tab-btn" onclick="showTab('jogos')">⚽ Jogos</button>
+    <button class="tab-btn" onclick="showTab('palpite')">✏️ Palpite</button>
+    <button class="tab-btn" onclick="showTab('placar')">🏅 Placar</button>
+  </div>
+
+  <main>
+
+    <div id="player-bar" class="player-bar" style="display:none">
+      <span>Você é:</span>
+      <select id="current-player" onchange="onPlayerChange()">
+        <option value="">— selecione seu nome —</option>
+      </select>
+      <button class="btn btn-small btn-secondary" style="width:auto;margin:0;padding:6px 12px" onclick="showAddPlayer()">+ Novo</button>
+    </div>
+
+    <!-- TAB: INÍCIO -->
+    <div id="tab-inicio" class="tab-content active">
+      <div id="next-game-container"></div>
+    </div>
+
+    <!-- TAB: JOGOS -->
+    <div id="tab-jogos" class="tab-content">
+      <div id="games-all"></div>
+    </div>
+
+    <!-- TAB: PALPITE -->
+    <div id="tab-palpite" class="tab-content">
+      <div class="card">
+        <div class="card-title">Quem está apostando?</div>
+        <div id="existing-players-group" style="display:none">
+          <div class="form-group">
+            <label>Selecionar participante existente</label>
+            <div style="display:flex;gap:8px;align-items:center">
+              <select id="existing-player-select" onchange="onExistingPlayerSelect()" style="flex:1;padding:11px 14px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-family:'Inter',sans-serif;font-size:0.9rem">
+                <option value="">— escolha um nome —</option>
+              </select>
+              <button id="delete-player-btn" onclick="deletePlayer()" style="display:none;padding:11px 14px;background:var(--red-bg);color:var(--red);border:1px solid rgba(220,38,38,0.2);border-radius:var(--radius-sm);font-family:'Inter',sans-serif;font-size:0.85rem;font-weight:600;cursor:pointer;white-space:nowrap">
+                🗑️ Excluir
+              </button>
+            </div>
+          </div>
+          <div class="palpite-divider">ou</div>
+        </div>
+        <div class="form-group">
+          <label>Novo participante</label>
+          <input type="text" id="player-name-input" placeholder="Digite seu nome" />
+        </div>
+        <button class="btn btn-secondary" onclick="loadPlayerForm()">Carregar palpites</button>
+      </div>
+      <div id="palpite-form" style="display:none">
+        <div id="form-all"></div>
+        <button class="btn" onclick="savePredictions()">💾 Salvar todos os palpites</button>
+      </div>
+    </div>
+
+    <!-- TAB: PLACAR -->
+    <div id="tab-placar" class="tab-content">
+      <div id="leaderboard-list"></div>
+    </div>
+
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <!-- Modal: inserir resultado -->
+  <div id="result-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:100;align-items:center;justify-content:center">
+    <div class="card" style="max-width:360px;width:90%;margin:0">
+      <div class="card-title">Inserir Resultado</div>
+      <div id="result-modal-teams" style="text-align:center;font-weight:700;margin-bottom:16px"></div>
+      <div class="score-input" style="justify-content:center">
+        <input type="number" id="result-t1" min="0" max="20" value="0" style="width:70px" />
+        <span class="score-vs">×</span>
+        <input type="number" id="result-t2" min="0" max="20" value="0" style="width:70px" />
+      </div>
+      <input type="hidden" id="result-game-id" />
+      <button class="btn" style="margin-top:16px" onclick="saveResult()">Confirmar resultado</button>
+      <button class="btn btn-secondary" style="margin-top:8px" onclick="closeModal()">Cancelar</button>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0/dist/umd/supabase.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
