@@ -397,10 +397,11 @@ function renderLeaderboard() {
   const medals = ['🥇', '🥈', '🥉'];
 
   // calcular posição real (empates ficam com o mesmo número)
-  const ranks = scores.map((s, i) => {
-    if (i === 0) return 1;
-    return scores[i-1].total === s.total && scores[i-1].exact === s.exact ? ranks[i-1] : i + 1;
-  });
+  const ranks = [1];
+  for (let i = 1; i < scores.length; i++) {
+    const tied = scores[i].total === scores[i-1].total && scores[i].exact === scores[i-1].exact;
+    ranks.push(tied ? ranks[i-1] : i + 1);
+  }
 
   container.innerHTML = `
     <div class="card">
