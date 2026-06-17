@@ -489,6 +489,8 @@ async function deletePlayer() {
 function onPlayerChange() {
   currentPlayer = document.getElementById('current-player').value;
   document.getElementById('player-name-input').value = currentPlayer;
+  renderNextGame();
+  renderAllGames();
   if (currentPlayer) { renderPredictionForm(); }
 }
 
