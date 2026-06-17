@@ -348,12 +348,14 @@ function renderPredictionForm() {
 async function savePredictions() {
   if (!currentPlayer) { showToast('Selecione seu nome primeiro!'); return; }
 
-  const rows = GAMES.map(game => ({
-    game_id:     game.id,
-    player_name: currentPlayer,
-    score1:      parseInt(document.getElementById(`pred-${game.id}-1`)?.value || 0),
-    score2:      parseInt(document.getElementById(`pred-${game.id}-2`)?.value || 0),
-  }));
+  const rows = GAMES
+    .filter(game => !allResults[game.id])
+    .map(game => ({
+      game_id:     game.id,
+      player_name: currentPlayer,
+      score1:      parseInt(document.getElementById(`pred-${game.id}-1`)?.value || 0),
+      score2:      parseInt(document.getElementById(`pred-${game.id}-2`)?.value || 0),
+    }));
 
   try {
     await supabase.from('predictions').upsert(rows, { onConflict: 'game_id,player_name' });
