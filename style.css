@@ -259,12 +259,13 @@ main {
 }
 
 .prediction-row {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 80px 52px;
   align-items: center;
   padding: 9px 0;
   border-bottom: 1px solid var(--border);
   font-size: 0.85rem;
+  gap: 8px;
 }
 
 .prediction-row:last-child { border-bottom: none; }
@@ -282,6 +283,7 @@ main {
   background: var(--surface-2);
   padding: 5px 10px;
   border-radius: var(--radius-pill);
+  text-align: center;
 }
 
 .prediction-points {
@@ -289,6 +291,7 @@ main {
   font-weight: 700;
   padding: 4px 10px;
   border-radius: var(--radius-pill);
+  text-align: center;
 }
 
 .points-3  { background: var(--green-bg);  color: var(--green); }
