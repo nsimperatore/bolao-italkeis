@@ -396,18 +396,28 @@ function renderLeaderboard() {
 
   const medals = ['🥇', '🥈', '🥉'];
 
+  // calcular posição real (empates ficam com o mesmo número)
+  const ranks = scores.map((s, i) => {
+    if (i === 0) return 1;
+    return scores[i-1].total === s.total && scores[i-1].exact === s.exact ? ranks[i-1] : i + 1;
+  });
+
   container.innerHTML = `
     <div class="card">
       <div class="card-title">Classificação Geral</div>
-      ${scores.map((s, i) => `
+      ${scores.map((s, i) => {
+        const rank = ranks[i];
+        const label = medals[rank-1] || rank;
+        return `
         <div class="leaderboard-row">
-          <div class="rank rank-${i+1}">${medals[i] || i+1}</div>
+          <div class="rank rank-${rank}">${label}</div>
           <div>
             <div class="leaderboard-name">${s.name}</div>
             <div class="leaderboard-detail">${s.exact} placar exato · ${s.winner} resultado certo</div>
           </div>
           <div class="leaderboard-points">${s.total} pts</div>
-        </div>`).join('')}
+        </div>`;
+      }).join('')}
     </div>
     <div class="card">
       <div class="card-title">Como funciona a pontuação</div>

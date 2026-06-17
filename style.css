@@ -412,6 +412,10 @@ input:focus {
   border-bottom: 1px solid var(--border);
 }
 
+.leaderboard-row > div:nth-child(2) {
+  flex: 1;
+}
+
 .leaderboard-row:last-child { border-bottom: none; }
 
 .rank {
