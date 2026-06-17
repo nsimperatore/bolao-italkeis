@@ -68,7 +68,7 @@ function renderNextGame() {
   // card do último jogo jogado
   if (last) {
     const result = allResults[last.id];
-    const preds  = allPredictions.filter(p => p.game_id === last.id);
+    const preds  = allPredictions.filter(p => p.game_id === last.id && (!currentPlayer || p.player_name === currentPlayer));
     html += `
       <div class="next-label">Último resultado</div>
       <div class="game-card next-card past-card">
@@ -108,7 +108,7 @@ function renderNextGame() {
 
   // card do próximo jogo
   if (next) {
-    const preds = allPredictions.filter(p => p.game_id === next.id);
+    const preds = allPredictions.filter(p => p.game_id === next.id && (!currentPlayer || p.player_name === currentPlayer));
     html += `
       <div class="next-label" style="margin-top:${last ? '28px' : '0'}">Próximo jogo</div>
       <div class="game-card next-card">
@@ -166,7 +166,7 @@ function togglePredictions(gameId) {
   const expanded = list.dataset.expanded === 'true';
   list.dataset.expanded = !expanded;
 
-  const preds = allPredictions.filter(p => p.game_id === gameId);
+  const preds = allPredictions.filter(p => p.game_id === gameId && (!currentPlayer || p.player_name === currentPlayer));
   const result = allResults[gameId];
 
   if (!expanded) {
@@ -195,14 +195,15 @@ function predsRowsHTML(preds, result) {
 
 function gameCardHTML(game, collapsible = false) {
   const result = allResults[game.id];
-  const preds  = allPredictions.filter(p => p.game_id === game.id);
+  const allGamePreds = allPredictions.filter(p => p.game_id === game.id);
+  const preds = currentPlayer ? allGamePreds.filter(p => p.player_name === currentPlayer) : allGamePreds;
 
   const clearBtn = result
     ? `<button class="btn btn-small" style="width:auto;margin:0;padding:6px 10px;background:var(--red-bg);color:var(--red);border:1px solid rgba(220,38,38,0.2)" onclick="clearResult('${game.id}')">🗑️</button>`
     : '';
 
   const LIMIT = 5;
-  const showToggle = collapsible && preds.length > LIMIT;
+  const showToggle = collapsible && !currentPlayer && allGamePreds.length > LIMIT;
   const visiblePreds = showToggle ? preds.slice(0, LIMIT) : preds;
 
   const toggleBtn = showToggle
