@@ -259,7 +259,8 @@ main {
 }
 
 .prediction-row {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 60px;
   align-items: center;
   padding: 9px 0;
   border-bottom: 1px solid var(--border);
@@ -271,7 +272,6 @@ main {
 .prediction-name {
   font-weight: 600;
   color: var(--text);
-  flex: 0 0 45%;
 }
 
 .prediction-score {
@@ -282,8 +282,7 @@ main {
   background: var(--surface-2);
   padding: 5px 10px;
   border-radius: var(--radius-pill);
-  flex: 1;
-  text-align: center;
+  justify-self: center;
 }
 
 .prediction-points {
@@ -291,7 +290,7 @@ main {
   font-weight: 700;
   padding: 4px 10px;
   border-radius: var(--radius-pill);
-  flex: 0 0 52px;
+  justify-self: end;
   text-align: center;
 }
 
