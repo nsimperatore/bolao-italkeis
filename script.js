@@ -4,17 +4,17 @@ const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 // ─── JOGOS ────────────────────────────────────────────────────────────────────
 const GAMES = [
   // Brasil
-  { id: 'bra1', country: 'brasil',   flag1: '🇧🇷', name1: 'Brasil',   flag2: '🇲🇽', name2: 'México',   date: '18 Jun',   order: 1 },
-  { id: 'bra2', country: 'brasil',   flag1: '🇧🇷', name1: 'Brasil',   flag2: '🇩🇪', name2: 'Alemanha', date: '22 Jun',   order: 3 },
-  { id: 'bra3', country: 'brasil',   flag1: '🇧🇷', name1: 'Brasil',   flag2: '🇯🇵', name2: 'Japão',    date: '26 Jun',   order: 5 },
+  { id: 'bra1', country: 'brasil',   flag1: '🇧🇷', name1: 'Brasil',   flag2: '🇲🇦', name2: 'Marrocos', date: '13 Jun',   order: 1 },
+  { id: 'bra2', country: 'brasil',   flag1: '🇧🇷', name1: 'Brasil',   flag2: '🇭🇹', name2: 'Haiti',    date: '19 Jun',   order: 3 },
+  { id: 'bra3', country: 'brasil',   flag1: '🏴󠁧󠁢󠁳󠁣󠁴󠁿', name1: 'Escócia',  flag2: '🇧🇷', name2: 'Brasil',   date: '24 Jun',   order: 5 },
   { id: 'bra4', country: 'brasil',   flag1: '🇧🇷', name1: 'Brasil',   flag2: '🏆',  name2: 'Oitavas',  date: 'Oitavas',  order: 7 },
   { id: 'bra5', country: 'brasil',   flag1: '🇧🇷', name1: 'Brasil',   flag2: '🏆',  name2: 'Quartas',  date: 'Quartas',  order: 9 },
   { id: 'bra6', country: 'brasil',   flag1: '🇧🇷', name1: 'Brasil',   flag2: '🏆',  name2: 'Semi',     date: 'Semifinal',order: 11 },
   { id: 'bra7', country: 'brasil',   flag1: '🇧🇷', name1: 'Brasil',   flag2: '🏆',  name2: 'Final',    date: 'Final',    order: 13 },
   // Portugal
-  { id: 'por1', country: 'portugal', flag1: '🇵🇹', name1: 'Portugal', flag2: '🇺🇸', name2: 'EUA',      date: '19 Jun',   order: 2 },
-  { id: 'por2', country: 'portugal', flag1: '🇵🇹', name1: 'Portugal', flag2: '🇲🇦', name2: 'Marrocos', date: '23 Jun',   order: 4 },
-  { id: 'por3', country: 'portugal', flag1: '🇵🇹', name1: 'Portugal', flag2: '🇹🇷', name2: 'Turquia',  date: '27 Jun',   order: 6 },
+  { id: 'por1', country: 'portugal', flag1: '🇵🇹', name1: 'Portugal', flag2: '🇨🇩', name2: 'Rep. D. Congo', date: '17 Jun', order: 2 },
+  { id: 'por2', country: 'portugal', flag1: '🇵🇹', name1: 'Portugal', flag2: '🇺🇿', name2: 'Uzbequistão',   date: '23 Jun', order: 4 },
+  { id: 'por3', country: 'portugal', flag1: '🇨🇴', name1: 'Colômbia', flag2: '🇵🇹', name2: 'Portugal',      date: '27 Jun', order: 6 },
   { id: 'por4', country: 'portugal', flag1: '🇵🇹', name1: 'Portugal', flag2: '🏆',  name2: 'Oitavas',  date: 'Oitavas',  order: 8 },
   { id: 'por5', country: 'portugal', flag1: '🇵🇹', name1: 'Portugal', flag2: '🏆',  name2: 'Quartas',  date: 'Quartas',  order: 10 },
   { id: 'por6', country: 'portugal', flag1: '🇵🇹', name1: 'Portugal', flag2: '🏆',  name2: 'Semi',     date: 'Semifinal',order: 12 },
