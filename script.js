@@ -316,6 +316,20 @@ function renderPredictionForm() {
     const existing = allPredictions.find(p => p.game_id === game.id && p.player_name === currentPlayer);
     const v1 = existing ? existing.score1 : 0;
     const v2 = existing ? existing.score2 : 0;
+    const hasResult = !!allResults[game.id];
+    if (hasResult) {
+      const r = allResults[game.id];
+      return `
+        <div class="card" style="margin-bottom:12px;opacity:0.55">
+          <div style="font-weight:700;margin-bottom:8px">
+            ${game.flag1} ${game.name1} vs ${game.flag2} ${game.name2}
+            <span style="color:var(--text-3);font-weight:400;font-size:0.8rem;margin-left:6px">${game.date}</span>
+          </div>
+          <div style="font-size:0.78rem;color:var(--text-2);background:var(--surface-2);padding:8px 12px;border-radius:var(--radius-sm)">
+            🔒 Jogo encerrado — resultado: ${r.score1} × ${r.score2}
+          </div>
+        </div>`;
+    }
     return `
       <div class="card" style="margin-bottom:12px">
         <div style="font-weight:700;margin-bottom:12px">
